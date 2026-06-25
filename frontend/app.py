@@ -3,11 +3,17 @@ import requests
 
 st.title("DevPilot AI")
 
-if st.button("Connect to Backend"):
-    response = requests.get("http://127.0.0.1:8000/")
+user_message = st.text_input("Enter your message")
 
-    if response.status_code == 200:
-        data = response.json()
-        st.success(data["message"])
-    else:
-        st.error("Failed to connect to backend")
+if st.button("Send"):
+
+    response = requests.post(
+        "http://127.0.0.1:8000/chat",
+        json={
+            "message": user_message
+        }
+    )
+
+    data = response.json()
+
+    st.success(data["reply"])
