@@ -1,21 +1,15 @@
 from fastapi import FastAPI
+from app.core.config import APP_NAME
+from app.services.chat_service import generate_reply
 from app.models.chat import ChatRequest
-from app.services.chat_service import ChatService
 
 app = FastAPI()
 
-@app.get("/")
-def read_root():
-    return {
-        "message": "Welcome to DevPilot AI!"
-    }
 
 @app.post("/chat")
 def chat(request: ChatRequest):
 
-    reply = ChatService.get_response(
-        request.message
-    )
+    reply = generate_reply(request.message)
 
     return {
         "reply": reply
