@@ -6,13 +6,14 @@ venv/
 
 # Python Cache
 __pycache__/
-*.pyc
-
-# Pytest
-.pytest_cache/
+*.py[cod]
+*$py.class
 
 # VS Code
 .vscode/
+
+# Pytest
+.pytest_cache/
 
 # OS Files
 .DS_Store
